@@ -9,14 +9,21 @@ namespace MiFirmwareEditor
     class vars
     {
 
-        public String[] categories = new String[] //Dont change the order!!!
+        public String[] categories_pro_10154 = new String[] //Dont change the order!!!
         {
             "App Notification Icons",
             "Medium sized time numbers",
             "Small date characters"
         };
 
-        public String[,] notificationNames = new String[,]
+        public String[] categories_pro_10181 = new String[] //Dont change the order!!!
+        {
+            "App Notification Icons",
+            "Medium sized time numbers",
+            "Small date characters"
+        };
+
+        public String[,] notificationNames_pro_10154 = new String[,]
         {
             //{ "Animated Phone ringing", "", "" },
             //{ "Animated Call Icon", "", "" },
@@ -58,7 +65,49 @@ namespace MiFirmwareEditor
             { "Mi", "27ca8", "27d5b" }
         };
 
-        public String[,] mediumNumberNames = new String[,]
+        public String[,] notificationNames_pro_10181 = new String[,]
+        {
+            //{ "Animated Phone ringing", "", "" },
+            //{ "Animated Call Icon", "", "" },
+            { "Email", "27154", "27207" },
+            { "Facebook", "264f1", "265a4" },
+            { "Call (no animation)", "26c68", "26d1b" },
+            { "Generic App", "25c90", "25d43" },
+            //{ "Message Heart", "", "" },
+            { "Mi Fit", "25858", "2590b" },
+            { "Mi Talk", "262d5", "26388" },
+            { "Facebook Messenger", "26dd0", "26e83" },
+            //{ "Penguin thing ???", "27314", "273c7" },
+            //{ "Message App Icon", "" "" },
+            //{ "Snapchat", "27959", "27a0c" },
+            { "Taobao", "26976", "26a29" },
+            { "Google Hangouts", "27438", "274eb" },
+            { "Twitter", "259c0", "25a73" },
+            //{ "Weird Message Icon", "", "" },
+            { "Weibo", "26bb4", "26c67" },
+            { "Whatsapp", "25a74", "25b27" },
+            { "Instagram", "270a0", "27153" },
+            { "VK ???", "25eac", "25f5f" },
+            { "Pokemon Go", "26a2a", "26add" },
+            { "Skype", "26fb0", "27063" },
+            { "Telegram", "26b00", "26bb3" },
+            { "Calendar", "272d0", "27383" },
+            { "Chinese Mail thing ???", "26389", "2643c" },
+            { "Some Explosion ???", "26e84", "26f37" },
+            { "Chinese App 1 ???", "268c2", "26975" },
+            //{ "Chinese App 2 ???", "27689", "2773c" },
+            { "Chinese App 3 ???", "26d1c", "26dcf" },
+            { "Alipay", "2590c", "259bf" },
+            { "Chinese App 4 ???", "275a0", "27653" },
+            { "Chinese App 5 ???", "25d44", "25df7" },
+            { "Chinese App 6 ???", "266c8", "2677b" },
+            { "Chinese App 7 ???", "2616d", "26220" },
+            { "Line", "26bdc", "25c8f" },
+            { "Talk", "27384", "27437" },
+            { "Mi", "2679c", "2684f" }
+        };
+
+        public String[,] mediumNumberNames_pro_10154 = new String[,]
         {
             { "0", "28ac0", "28ae3" },
             { "1", "28ae4", "28b07" },
@@ -72,7 +121,21 @@ namespace MiFirmwareEditor
             { "9", "28c04", "28c27" }
         };
 
-        public String[,] smallDateTextAndWidth = new String[,]
+        public String[,] mediumNumberNames_pro_10181 = new String[,]
+        {
+            { "0", "2780c", "2782f" },
+            { "1", "27830", "27853" },
+            { "2", "27854", "27877" },
+            { "3", "27878", "2789b" },
+            { "4", "2789c", "278bf" },
+            { "5", "278c0", "278e3" },
+            { "6", "278e4", "27907" },
+            { "7", "27908", "2792b" },
+            { "8", "2792c", "2794f" },
+            { "9", "27950", "27973" }
+        };
+
+        public String[,] smallDateTextAndWidths_pro_10154 = new String[,]
         {
             { "a", "5", "28aae", "28ab7" },
             { "b", "4", "28c91", "28c98" },
@@ -102,6 +165,73 @@ namespace MiFirmwareEditor
             { "T", "5", "28c99", "28ca2" },
             { "W", "7", "28f3a", "28f47" }
         };
+
+        public String[,] smallDateTextAndWidths_pro_10181 = new String[,]
+        {
+            { "a", "5", "277fa", "27803" },
+            { "b", "4", "279dd", "279e4" },
+            { "c", "4", "27c7e", "27c85" },
+            { "d", "5", "279d3", "279dc" },
+            { "e", "4", "27ba8", "27baf" },
+            { "g", "4", "27bb0", "27bb7" },
+            { "h", "4", "27b4b", "27b51" },
+            { "i", "1", "277f8", "277f9" },
+            //{ "l", "1", "27b42", "28c5f" },
+            { "n", "4", "27b42", "28dfd" },
+            { "o", "4", "27b98", "28e53" },
+            { "p", "4", "279b6", "28c71" },
+            { "r", "4", "279a2", "28c5d" },
+            { "t", "4", "27804", "28abf" },
+            { "u", "5", "27b8e", "28e4b" },
+            { "v", "5", "279ac", "28c69" },
+            { "y", "4", "27ba0", "28e5b" },
+
+            { "A", "6", "27c94", "27c9f" },
+            { "D", "6", "27b52", "27b5d" },
+            { "F", "5", "27b38", "27b41" },
+            { "J", "5", "27998", "279a1" },
+            { "M", "7", "27caa", "27cb7" },
+
+            { "N", "6", "279ef", "279fa" },
+            { "O", "5", "27ad4", "27add" },
+            { "S", "5", "27ca0", "27ca9" },
+            { "T", "5", "279e5", "279ee" },
+            { "W", "7", "27c86", "27c93" }
+        };
+
+        // Getter Functions
+
+        public String[] getCategories(String version)
+        {
+            if (version == "pro_1.0.1.54") return categories_pro_10154;
+            if (version == "pro_1.0.1.81") return categories_pro_10181;
+
+            return null;
+        }
+
+        public String[,] getNotificationNames(String version)
+        {
+            if (version == "pro_1.0.1.54") return notificationNames_pro_10154;
+            if (version == "pro_1.0.1.81") return notificationNames_pro_10181;
+
+            return null;
+        }
+
+        public String[,] getMediumNumberNames(String version)
+        {
+            if (version == "pro_1.0.1.54") return mediumNumberNames_pro_10154;
+            if (version == "pro_1.0.1.81") return mediumNumberNames_pro_10181;
+
+            return null;
+        }
+
+        public String[,] getSmallDateTextAndWidths(String version)
+        {
+            if (version == "pro_1.0.1.54") return smallDateTextAndWidths_pro_10154;
+            if (version == "pro_1.0.1.81") return smallDateTextAndWidths_pro_10181;
+
+            return null;
+        }
 
     }
 }

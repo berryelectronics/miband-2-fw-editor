@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.buttonFirmwareLoad = new System.Windows.Forms.Button();
             this.buttonFirmwareSave = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.cbCategory = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonEditorSave = new System.Windows.Forms.Button();
@@ -58,6 +57,8 @@
             this.timerMouseDown = new System.Windows.Forms.Timer(this.components);
             this.numericUpDownBrushWidth = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
+            this.comboBoxVersionSelect = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBrushWidth)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,19 +82,10 @@
             this.buttonFirmwareSave.UseVisualStyleBackColor = true;
             this.buttonFirmwareSave.Click += new System.EventHandler(this.buttonFirmwareSave_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(415, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(396, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Only use Firmware 1.0.1.54 !!! LOAD FIRMWARE BEFORE EDITING ANYTHING!";
-            // 
             // cbCategory
             // 
             this.cbCategory.FormattingEnabled = true;
-            this.cbCategory.Location = new System.Drawing.Point(626, 58);
+            this.cbCategory.Location = new System.Drawing.Point(626, 97);
             this.cbCategory.Name = "cbCategory";
             this.cbCategory.Size = new System.Drawing.Size(176, 21);
             this.cbCategory.TabIndex = 4;
@@ -102,7 +94,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(623, 42);
+            this.label2.Location = new System.Drawing.Point(623, 81);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(91, 13);
             this.label2.TabIndex = 5;
@@ -131,7 +123,7 @@
             // cbEditItem
             // 
             this.cbEditItem.FormattingEnabled = true;
-            this.cbEditItem.Location = new System.Drawing.Point(626, 85);
+            this.cbEditItem.Location = new System.Drawing.Point(626, 124);
             this.cbEditItem.Name = "cbEditItem";
             this.cbEditItem.Size = new System.Drawing.Size(176, 21);
             this.cbEditItem.TabIndex = 11;
@@ -324,11 +316,31 @@
             this.label10.TabIndex = 30;
             this.label10.Text = "Brush width";
             // 
+            // comboBoxVersionSelect
+            // 
+            this.comboBoxVersionSelect.FormattingEnabled = true;
+            this.comboBoxVersionSelect.Location = new System.Drawing.Point(626, 57);
+            this.comboBoxVersionSelect.Name = "comboBoxVersionSelect";
+            this.comboBoxVersionSelect.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxVersionSelect.TabIndex = 31;
+            this.comboBoxVersionSelect.SelectedIndexChanged += new System.EventHandler(this.comboBoxVersionSelect_SelectedIndexChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(623, 41);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(75, 13);
+            this.label11.TabIndex = 32;
+            this.label11.Text = "Select Version";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(814, 761);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.comboBoxVersionSelect);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.numericUpDownBrushWidth);
             this.Controls.Add(this.checkBox1);
@@ -352,7 +364,6 @@
             this.Controls.Add(this.buttonEditorSave);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cbCategory);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonFirmwareSave);
             this.Controls.Add(this.buttonFirmwareLoad);
             this.Name = "Form1";
@@ -372,7 +383,6 @@
 
         private System.Windows.Forms.Button buttonFirmwareLoad;
         private System.Windows.Forms.Button buttonFirmwareSave;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbCategory;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonEditorSave;
@@ -399,6 +409,8 @@
         private System.Windows.Forms.Timer timerMouseDown;
         private System.Windows.Forms.NumericUpDown numericUpDownBrushWidth;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox comboBoxVersionSelect;
+        private System.Windows.Forms.Label label11;
     }
 }
 

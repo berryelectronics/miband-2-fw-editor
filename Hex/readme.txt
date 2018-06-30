@@ -37,6 +37,8 @@ app_icons:
     36: Line
     37: Talk
     38: Mi
+    39: Other Message with Star
+    40: YouTube
 
 medium_number:
     0-9

@@ -37,7 +37,13 @@ namespace MiFirmwareEditor
         private Pen stift = new Pen(Color.Black);
         private SolidBrush pinsel = new SolidBrush(Color.Black);
 
+        String[,] versions = new String[,] {
+            { "1.0.1.54 Mili_pro.fw", "pro_1.0.1.54" },
+            { "1.0.1.81 Mili_pro.fw", "pro_1.0.1.81" }
+        };
+
         private String tempFilePath = null;
+        String currentVersion = "pro_1.0.1.54";
         bool firmwareLoaded = false;
 
         bool editorModeAddPixel = true;
@@ -56,11 +62,22 @@ namespace MiFirmwareEditor
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //Draw Notification Editor
+            z = CreateGraphics();
+
             //Setup of Dropdown Box:
-            for (int i = 0; i < extVariable.categories.Length; i++)
+            for (int i = 0; i < versions.GetLength(0); i++)
             {
-                cbCategory.Items.Add(extVariable.categories[i]);
+                comboBoxVersionSelect.Items.Add(versions[i, 0]);
             }
+            
+            for (int i = 0; i < extVariable.getCategories(currentVersion).Length; i++)
+            {
+                cbCategory.Items.Add(extVariable.getCategories(currentVersion)[i]);
+            }
+
+            comboBoxVersionSelect.SelectedIndex = 0;
+            currentVersion = versions[comboBoxVersionSelect.SelectedIndex, 1];
 
             //Initialize editor buffer
             for (int i = 0; i < 40; i++)
@@ -71,8 +88,7 @@ namespace MiFirmwareEditor
                 }
             }
 
-            //Draw Notification Editor
-            z = CreateGraphics();
+           
 
             //Setup Temp file location
             tempFilePath = Path.GetTempFileName();
@@ -87,22 +103,22 @@ namespace MiFirmwareEditor
             switch (curIndex)
             {
                 case 0:
-                    Console.WriteLine(extVariable.notificationNames.GetLength(0));
-                    for (int i = 0; i < extVariable.notificationNames.GetLength(0); i++)
+                    Console.WriteLine(extVariable.getNotificationNames(currentVersion).GetLength(0));
+                    for (int i = 0; i < extVariable.getNotificationNames(currentVersion).GetLength(0); i++)
                     {
-                        cbEditItem.Items.Add(extVariable.notificationNames[i, 0]);
+                        cbEditItem.Items.Add(extVariable.getNotificationNames(currentVersion)[i, 0]);
                     }
                     break;
                 case 1:
-                    for (int i = 0; i < extVariable.mediumNumberNames.GetLength(0); i++)
+                    for (int i = 0; i < extVariable.getMediumNumberNames(currentVersion).GetLength(0); i++)
                     {
-                        cbEditItem.Items.Add(extVariable.mediumNumberNames[i, 0]);
+                        cbEditItem.Items.Add(extVariable.getMediumNumberNames(currentVersion)[i, 0]);
                     }
                     break;
                 case 2:
-                    for (int i = 0; i < extVariable.smallDateTextAndWidth.GetLength(0); i++)
+                    for (int i = 0; i < extVariable.getSmallDateTextAndWidths(currentVersion).GetLength(0); i++)
                     {
-                        cbEditItem.Items.Add(extVariable.smallDateTextAndWidth[i, 0]);
+                        cbEditItem.Items.Add(extVariable.getSmallDateTextAndWidths(currentVersion)[i, 0]);
                     }
                     break;
             }
@@ -331,6 +347,140 @@ namespace MiFirmwareEditor
 
             return currentWordValueHex;
         }
+        
+        private String longWortToHex(int input, Boolean uppercase = false)
+        {
+
+            String currentWordValueHex = "0";
+            int limit = 240;
+
+            if (input >= limit)
+            {
+                input -= limit;
+                currentWordValueHex = "f";
+            }
+            limit -= 16;
+            if (input >= limit)
+            {
+                input -= limit;
+                currentWordValueHex = "e";
+            }
+            limit -= 16;
+            if (input >= limit)
+            {
+                input -= limit;
+                currentWordValueHex = "d";
+            }
+            limit -= 16;
+            if (input >= limit)
+            {
+                input -= limit;
+                currentWordValueHex = "c";
+            }
+            limit -= 16;
+            if (input >= limit)
+            {
+                input -= limit;
+                currentWordValueHex = "b";
+            }
+            limit -= 16;
+            if (input >= limit)
+            {
+                input -= limit;
+                currentWordValueHex = "a";
+            }
+            limit -= 16;
+            if (input >= limit)
+            {
+                input -= limit;
+                currentWordValueHex = "9";
+            }
+            limit -= 16;
+            if (input >= limit)
+            {
+                input -= limit;
+                currentWordValueHex = "8";
+            }
+            limit -= 16;
+            if (input >= limit)
+            {
+                input -= limit;
+                currentWordValueHex = "7";
+            }
+            limit -= 16;
+            if (input >= limit)
+            {
+                input -= limit;
+                currentWordValueHex = "6";
+            }
+            limit -= 16;
+            if (input >= limit)
+            {
+                input -= limit;
+                currentWordValueHex = "5";
+            }
+            limit -= 16;
+            if (input >= limit)
+            {
+                input -= limit;
+                currentWordValueHex = "4";
+            }
+            limit -= 16;
+            if (input >= limit)
+            {
+                input -= limit;
+                currentWordValueHex = "3";
+            }
+            limit -= 16;
+            if (input >= limit)
+            {
+                input -= limit;
+                currentWordValueHex = "2";
+            }
+            limit -= 16;
+            if (input >= limit)
+            {
+                input -= limit;
+                currentWordValueHex = "1";
+            }
+
+            if (input < 10)
+            {
+                currentWordValueHex += input.ToString();
+            }
+            else if (input == 10)
+            {
+                currentWordValueHex += "a";
+            }
+            else if (input == 11)
+            {
+                currentWordValueHex += "b";
+            }
+            else if (input == 12)
+            {
+                currentWordValueHex += "c";
+            }
+            else if (input == 13)
+            {
+                currentWordValueHex += "d";
+            }
+            else if (input == 14)
+            {
+                currentWordValueHex += "e";
+            }
+            else if (input == 15)
+            {
+                currentWordValueHex += "f";
+            }
+
+
+            if (uppercase)
+            {
+                currentWordValueHex = currentWordValueHex.ToUpper();
+            }
+
+            return currentWordValueHex;
+        }
 
         private void loadSymbolFromTemp(int startPosition, int length)
         {
@@ -392,12 +542,12 @@ namespace MiFirmwareEditor
         {
             //generateNotificationBinaryCode(currentEditorHeight, currentEditorWidth);
             //Console.WriteLine(Convert.ToInt32("28aae", 16));
-            for (int i = 0; i < extVariable.smallDateTextAndWidth.GetLength(0); i++)
+            for (int i = 0; i < extVariable.getSmallDateTextAndWidths(currentVersion).GetLength(0); i++)
             {
-                Int32 start = Convert.ToInt32(extVariable.smallDateTextAndWidth[i, 2], 16);
-                Int32 end = Convert.ToInt32(extVariable.smallDateTextAndWidth[i, 3], 16);
+                Int32 start = Convert.ToInt32(extVariable.getSmallDateTextAndWidths(currentVersion)[i, 2], 16);
+                Int32 end = Convert.ToInt32(extVariable.getSmallDateTextAndWidths(currentVersion)[i, 3], 16);
                 Int32 length = end - start + 1;
-                Console.Write(length + " width: " + extVariable.smallDateTextAndWidth[i, 1]);
+                Console.Write(length + " width: " + extVariable.getSmallDateTextAndWidths(currentVersion)[i, 1]);
 
             }
         }
@@ -471,13 +621,13 @@ namespace MiFirmwareEditor
             switch (curCategoryIndex)
             {
                 case 0: //Notifications
-                    startPosition = Convert.ToInt32(extVariable.notificationNames[curItemIndex, 1], 16);
+                    startPosition = Convert.ToInt32(extVariable.getNotificationNames(currentVersion)[curItemIndex, 1], 16);
                     break;
                 case 1: //Medium Time
-                    startPosition = Convert.ToInt32(extVariable.mediumNumberNames[curItemIndex, 1], 16);
+                    startPosition = Convert.ToInt32(extVariable.getMediumNumberNames(currentVersion)[curItemIndex, 1], 16);
                     break;
                 case 2: //Small Date Letters
-                    startPosition = Convert.ToInt32(extVariable.smallDateTextAndWidth[curItemIndex, 2], 16);
+                    startPosition = Convert.ToInt32(extVariable.getSmallDateTextAndWidths(currentVersion)[curItemIndex, 2], 16);
                     break;
             }
 
@@ -512,19 +662,19 @@ namespace MiFirmwareEditor
                 case 0: //Notifications
                     currentEditorHeight = 36;
                     currentEditorWidth = 40;
-                    startPosition = Convert.ToInt32(extVariable.notificationNames[curItemIndex, 1], 16);
+                    startPosition = Convert.ToInt32(extVariable.getNotificationNames(currentVersion)[curItemIndex, 1], 16);
                     length = 1440;
                     break;
                 case 1: //Medium Time
                     currentEditorHeight = 12;
                     currentEditorWidth = 24;
-                    startPosition = Convert.ToInt32(extVariable.mediumNumberNames[curItemIndex, 1], 16);
+                    startPosition = Convert.ToInt32(extVariable.getMediumNumberNames(currentVersion)[curItemIndex, 1], 16);
                     length = 288;
                     break;
                 case 2: //Small Date Letters
-                    currentEditorHeight = Convert.ToInt32(extVariable.smallDateTextAndWidth[curItemIndex, 1]);
+                    currentEditorHeight = Convert.ToInt32(extVariable.getSmallDateTextAndWidths(currentVersion)[curItemIndex, 1]);
                     currentEditorWidth = 16;
-                    startPosition = Convert.ToInt32(extVariable.smallDateTextAndWidth[curItemIndex, 2], 16);
+                    startPosition = Convert.ToInt32(extVariable.getSmallDateTextAndWidths(currentVersion)[curItemIndex, 2], 16);
                     break;
             }
 
@@ -777,6 +927,12 @@ namespace MiFirmwareEditor
         private void numericUpDownBrushWidth_ValueChanged(object sender, EventArgs e)
         {
             editorBrushWidth = Convert.ToInt32(numericUpDownBrushWidth.Value);
+        }
+
+        private void comboBoxVersionSelect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            currentVersion = versions[comboBoxVersionSelect.SelectedIndex, 1];
+            cbCategory.SelectedIndex = 0;
         }
     }
 }
