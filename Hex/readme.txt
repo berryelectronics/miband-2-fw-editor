@@ -7,7 +7,7 @@ app_icons:
     6: Generic App
     7: Message Heart (missing)
     8: Mi Fit
-    9: Mi Talk
+    9: MiTalk
     10: Facebook Messenger
     11: Tencent QQ
     12: Message App Icon (missing)
@@ -24,11 +24,11 @@ app_icons:
     23: Skype
     24: Telegram
     25: Calendar
-    26: Chinese Mail thing ???
-    27: Some Explosion ???
-    28: Chinese App 1 ???
+    26: Japanese Mail thing ???
+    27: Midong
+    28: Momo
     29: Qianniu
-    30: Chinese App 3 ???
+    30: Baidu Tieba
     31: Alipay
     32: QZone
     33: Xianyu
