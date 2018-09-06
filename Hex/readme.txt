@@ -9,7 +9,7 @@ app_icons:
     8: Mi Fit
     9: Mi Talk
     10: Facebook Messenger
-    11: Penguin thing ???
+    11: Tencent QQ
     12: Message App Icon (missing)
     13: Snapchat
     14: Taobao
@@ -19,7 +19,7 @@ app_icons:
     18: Weibo
     19: Whatsapp
     20: Instagram
-    21: VK ???
+    21: VKontakte
     22: Pokemon Go
     23: Skype
     24: Telegram
