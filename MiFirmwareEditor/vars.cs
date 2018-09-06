@@ -102,7 +102,7 @@ namespace MiFirmwareEditor
             { "Xianyu", "25d44", "25df7" },
             { "JD.com", "266c8", "2677b" },
             { "DingTalk", "2616d", "26220" },
-            { "Line", "26bdc", "26c8f" },
+            { "Line", "25bdc", "25c8f" },
             { "Talk", "27384", "27437" },
             { "Mi", "2679c", "2684f" }
         };
