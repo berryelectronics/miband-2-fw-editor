@@ -27,13 +27,13 @@ app_icons:
     26: Chinese Mail thing ???
     27: Some Explosion ???
     28: Chinese App 1 ???
-    29: Chinese App 2 ???
+    29: Qianniu
     30: Chinese App 3 ???
     31: Alipay
-    32: Chinese App 4 ???
-    33: Chinese App 5 ???
-    34: Chinese App 6 ???
-    35: Chinese App 7 ???
+    32: QZone
+    33: Xianyu
+    34: JD.com
+    35: DingTalk
     36: Line
     37: Talk
     38: Mi
