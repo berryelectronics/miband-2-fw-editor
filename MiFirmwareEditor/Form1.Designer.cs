@@ -59,6 +59,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.comboBoxVersionSelect = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.labelInfoSelectVersion = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBrushWidth)).BeginInit();
             this.SuspendLayout();
             // 
@@ -262,9 +263,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(629, 615);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 13);
+            this.label3.Size = new System.Drawing.Size(63, 13);
             this.label3.TabIndex = 27;
-            this.label3.Text = "Version: 0.2.1";
+            this.label3.Text = "Version: 0.3";
             // 
             // checkBox1
             // 
@@ -321,7 +322,7 @@
             this.comboBoxVersionSelect.FormattingEnabled = true;
             this.comboBoxVersionSelect.Location = new System.Drawing.Point(626, 57);
             this.comboBoxVersionSelect.Name = "comboBoxVersionSelect";
-            this.comboBoxVersionSelect.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxVersionSelect.Size = new System.Drawing.Size(176, 21);
             this.comboBoxVersionSelect.TabIndex = 31;
             this.comboBoxVersionSelect.SelectedIndexChanged += new System.EventHandler(this.comboBoxVersionSelect_SelectedIndexChanged);
             // 
@@ -334,11 +335,23 @@
             this.label11.TabIndex = 32;
             this.label11.Text = "Select Version";
             // 
+            // labelInfoSelectVersion
+            // 
+            this.labelInfoSelectVersion.AutoSize = true;
+            this.labelInfoSelectVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelInfoSelectVersion.Location = new System.Drawing.Point(237, 16);
+            this.labelInfoSelectVersion.Name = "labelInfoSelectVersion";
+            this.labelInfoSelectVersion.Size = new System.Drawing.Size(289, 15);
+            this.labelInfoSelectVersion.TabIndex = 33;
+            this.labelInfoSelectVersion.Text = "Select the correct version before continuing!";
+            this.labelInfoSelectVersion.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(814, 761);
+            this.Controls.Add(this.labelInfoSelectVersion);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.comboBoxVersionSelect);
             this.Controls.Add(this.label10);
@@ -411,6 +424,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox comboBoxVersionSelect;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label labelInfoSelectVersion;
     }
 }
 

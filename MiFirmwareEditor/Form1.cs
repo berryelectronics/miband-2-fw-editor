@@ -38,12 +38,46 @@ namespace MiFirmwareEditor
         private SolidBrush pinsel = new SolidBrush(Color.Black);
 
         String[,] versions = new String[,] {
+            { "1.0.1.21 Mili_pro.fw", "pro_1.0.1.21" },
+            { "1.0.1.28 Mili_pro.fw", "pro_1.0.1.28" },
+            { "1.0.1.34 Mili_pro.fw", "pro_1.0.1.34" },
+            { "1.0.1.39 Mili_pro.fw", "pro_1.0.1.39" },
+            { "1.0.1.47 Mili_pro.fw", "pro_1.0.1.47" },
+            { "1.0.1.50 Mili_pro.fw", "pro_1.0.1.50" },
+            { "1.0.1.53 Mili_pro.fw", "pro_1.0.1.53" },
             { "1.0.1.54 Mili_pro.fw", "pro_1.0.1.54" },
-            { "1.0.1.81 Mili_pro.fw", "pro_1.0.1.81" }
+            { "1.0.1.59 Mili_pro.fw", "pro_1.0.1.59" },
+            { "1.0.1.67 Mili_pro.fw", "pro_1.0.1.67" },
+            { "1.0.1.69 Mili_pro.fw", "pro_1.0.1.69" },
+            { "1.0.1.81 Mili_pro.fw", "pro_1.0.1.81" },
+
+            { "1.0.1.30 Mili_pro_tph.fw", "pro_tph_1.0.1.30" },
+            { "1.0.1.33 Mili_pro_tph.fw", "pro_tph_1.0.1.33" },
+            { "1.0.1.47 Mili_pro_tph.fw", "pro_tph_1.0.1.47" },
+            { "1.0.1.50 Mili_pro_tph.fw", "pro_tph_1.0.1.50" },
+            { "1.0.1.53 Mili_pro_tph.fw", "pro_tph_1.0.1.53" },
+            { "1.0.1.67 Mili_pro_tph.fw", "pro_tph_1.0.1.67" },
+            { "1.0.1.69 Mili_pro_tph.fw", "pro_tph_1.0.1.69" },
+            { "1.0.1.81 Mili_pro_tph.fw", "pro_tph_1.0.1.81" },
+
+            { "1.0.1.52 Mili_pro_tph_as7000.fw", "pro_tph_as7000_1.0.1.52" },
+            { "1.0.1.67 Mili_pro_tph_as7000.fw", "pro_tph_as7000_1.0.1.67" },
+            { "1.0.1.69 Mili_pro_tph_as7000.fw", "pro_tph_as7000_1.0.1.69" },
+            { "1.0.1.81 Mili_pro_tph_as7000.fw", "pro_tph_as7000_1.0.1.81" },
+
+            { "1.0.1.58 Mili_pro_tph_indian.fw", "pro_tph_indian_1.0.1.58" },
+            { "1.0.1.61 Mili_pro_tph_indian.fw", "pro_tph_indian_1.0.1.61" },
+            { "1.0.1.67 Mili_pro_tph_indian.fw", "pro_tph_indian_1.0.1.67" },
+            { "1.0.1.69 Mili_pro_tph_indian.fw", "pro_tph_indian_1.0.1.69" },
+            { "1.0.1.70 Mili_pro_tph_indian.fw", "pro_tph_indian_1.0.1.70" },
+            { "1.0.1.81 Mili_pro_tph_indian.fw", "pro_tph_indian_1.0.1.81" },
+
+            { "1.0.1.49 Mili_pro_i.fw", "pro_i_1.0.1.49" },
+            { "1.0.1.52 Mili_pro_i.fw", "pro_i_1.0.1.52" },
         };
 
         private String tempFilePath = null;
-        String currentVersion = "pro_1.0.1.54";
+        String currentVersion = "pro_1.0.1.21";
         bool firmwareLoaded = false;
 
         bool editorModeAddPixel = true;
@@ -577,7 +611,8 @@ namespace MiFirmwareEditor
             Form.ActiveForm.Enabled = true;
             buttonFirmwareSave.Enabled = true;
 
-            currentItemChanged();
+            //currentItemChanged();
+            labelInfoSelectVersion.Visible = true;
         }
 
         private void buttonFirmwareSave_Click(object sender, EventArgs e)
@@ -932,7 +967,17 @@ namespace MiFirmwareEditor
         private void comboBoxVersionSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
             currentVersion = versions[comboBoxVersionSelect.SelectedIndex, 1];
+
+            cbCategory.Items.Clear();
+
+            for (int i = 0; i < extVariable.getCategories(currentVersion).Length; i++)
+            {
+                cbCategory.Items.Add(extVariable.getCategories(currentVersion)[i]);
+            }
+
             cbCategory.SelectedIndex = 0;
+            currentItemChanged();
+            labelInfoSelectVersion.Visible = false;
         }
     }
 }
