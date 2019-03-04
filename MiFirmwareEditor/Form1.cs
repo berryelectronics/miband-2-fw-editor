@@ -25,7 +25,7 @@ namespace MiFirmwareEditor
 
         vars extVariable = new vars();
 
-        Boolean[,] drawingAreaBuffer = new Boolean[40, 40];
+        Boolean[,] drawingAreaBuffer = new Boolean[72, 72];
 
         int currentEditorWidth = 40; //FIX NAMING BECAUSE ITS ALL FLIPPED SOMEHOW!!!
         int currentEditorHeight = 36;
@@ -114,9 +114,9 @@ namespace MiFirmwareEditor
             currentVersion = versions[comboBoxVersionSelect.SelectedIndex, 1];
 
             //Initialize editor buffer
-            for (int i = 0; i < 40; i++)
+            for (int i = 0; i < 72; i++)
             {
-                for (int j = 0; j < 40; j++)
+                for (int j = 0; j < 72; j++)
                 {
                     drawingAreaBuffer[i, j] = false;
                 }
@@ -130,13 +130,14 @@ namespace MiFirmwareEditor
 
         private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int curIndex = cbCategory.SelectedIndex;
-
+            int curCategoryIndex = cbCategory.SelectedIndex;
             cbEditItem.Items.Clear();
+            bool categoryIsNull = false;
 
-            switch (curIndex)
+            switch (curCategoryIndex)
             {
                 case 0:
+
                     Console.WriteLine(extVariable.getNotificationNames(currentVersion).GetLength(0));
                     for (int i = 0; i < extVariable.getNotificationNames(currentVersion).GetLength(0); i++)
                     {
@@ -144,20 +145,44 @@ namespace MiFirmwareEditor
                     }
                     break;
                 case 1:
+
                     for (int i = 0; i < extVariable.getMediumNumberNames(currentVersion).GetLength(0); i++)
                     {
                         cbEditItem.Items.Add(extVariable.getMediumNumberNames(currentVersion)[i, 0]);
                     }
                     break;
                 case 2:
-                    for (int i = 0; i < extVariable.getSmallDateTextAndWidths(currentVersion).GetLength(0); i++)
+
+                    if (extVariable.getSmallDateTextAndWidths(currentVersion) != null)
                     {
-                        cbEditItem.Items.Add(extVariable.getSmallDateTextAndWidths(currentVersion)[i, 0]);
+                        for (int i = 0; i < extVariable.getSmallDateTextAndWidths(currentVersion).GetLength(0); i++)
+                        {
+                            cbEditItem.Items.Add(extVariable.getSmallDateTextAndWidths(currentVersion)[i, 0]);
+                        }
+                    }
+                    else
+                    {
+                        categoryIsNull = true;
+                    }
+
+                    break;
+                case 3:
+
+                    for (int i = 0; i < extVariable.getHugeNumbers(currentVersion).GetLength(0); i++)
+                    {
+                        cbEditItem.Items.Add(extVariable.getHugeNumbers(currentVersion)[i, 0]);
+                    }
+                    break;
+                case 4:
+
+                    for (int i = 0; i < extVariable.getAdditionalIconsAnimations(currentVersion).GetLength(0); i++)
+                    {
+                        cbEditItem.Items.Add(extVariable.getAdditionalIconsAnimations(currentVersion)[i, 0]);
                     }
                     break;
             }
 
-            cbEditItem.SelectedIndex = 0;
+            if (!categoryIsNull) cbEditItem.SelectedIndex = 0;
         }
 
         private void drawEditorArea(int width, int height)
@@ -170,10 +195,27 @@ namespace MiFirmwareEditor
 
             //Draw empty rectangle first to clear area!
             pinsel.Color = BackColor;
-            z.FillRectangle(pinsel, xPosition, yPosition, drawingRectangleSize * 41, drawingRectangleSize * 41);
+            z.FillRectangle(pinsel, xPosition, yPosition, drawingRectangleSize * 73, drawingRectangleSize * 73);
             pinsel.Color = Color.Black;
 
             //Draw grid
+            Pen pen = new Pen(Color.FromArgb(255, 0, 0, 0));
+            // Vertical Lines
+            for (int i = 0; i < height + 1; i++)
+            {
+                z.DrawLine(pen, xPosition, yPosition, xPosition, yPosition + drawingRectangleSize * width);
+                xPosition = xPosition + drawingRectangleSize;
+            }
+            xPosition = offsetX;
+            // Horizontal Lines
+            for (int i = 0; i < width + 1; i++)
+            {
+                z.DrawLine(pen, xPosition, yPosition, xPosition + drawingRectangleSize * height, yPosition);
+                yPosition = yPosition + drawingRectangleSize;
+            }
+            yPosition = offsetY;
+
+            // Fill only the needed squares
             for (int i = 0; i < width; i++)
             {
                 for (int j = 0; j < height; j++)
@@ -182,19 +224,15 @@ namespace MiFirmwareEditor
                     {
                         z.FillRectangle(pinsel, xPosition, yPosition, drawingRectangleSize, drawingRectangleSize);
                     }
-
-                    else
-                    {
-                        pinsel.Color = BackColor;
-                        z.FillRectangle(pinsel, xPosition, yPosition, drawingRectangleSize, drawingRectangleSize);
-                        pinsel.Color = Color.Black;
-                        z.DrawRectangle(stift, xPosition, yPosition, drawingRectangleSize, drawingRectangleSize);
-                    }
                     xPosition += drawingRectangleSize;
                 }
                 xPosition = offsetX;
                 yPosition += drawingRectangleSize;
             }
+
+            xPosition = offsetX;
+            yPosition = offsetY;
+
         }
 
         private void Form1_Shown_1(object sender, EventArgs e)
@@ -576,6 +614,7 @@ namespace MiFirmwareEditor
         {
             //generateNotificationBinaryCode(currentEditorHeight, currentEditorWidth);
             //Console.WriteLine(Convert.ToInt32("28aae", 16));
+            Console.WriteLine("ALERT");
             for (int i = 0; i < extVariable.getSmallDateTextAndWidths(currentVersion).GetLength(0); i++)
             {
                 Int32 start = Convert.ToInt32(extVariable.getSmallDateTextAndWidths(currentVersion)[i, 2], 16);
@@ -664,6 +703,12 @@ namespace MiFirmwareEditor
                 case 2: //Small Date Letters
                     startPosition = Convert.ToInt32(extVariable.getSmallDateTextAndWidths(currentVersion)[curItemIndex, 2], 16);
                     break;
+                case 3: //Huge Numbers
+                    startPosition = Convert.ToInt32(extVariable.getHugeNumbers(currentVersion)[curItemIndex, 1], 16);
+                    break;
+                case 4: //Additional Icons and Animations
+                    startPosition = Convert.ToInt32(extVariable.getAdditionalIconsAnimations(currentVersion)[curItemIndex, 2], 16);
+                    break;
             }
 
             tempFile.BaseStream.Position = startPosition;
@@ -684,9 +729,9 @@ namespace MiFirmwareEditor
             int length = 0;
 
             //empty data buffer
-            for (int i = 0; i < 40; i++)
+            for (int i = 0; i < 72; i++)
             {
-                for (int j = 0; j < 40; j++)
+                for (int j = 0; j < 72; j++)
                 {
                     drawingAreaBuffer[i, j] = false;
                 }
@@ -710,6 +755,17 @@ namespace MiFirmwareEditor
                     currentEditorHeight = Convert.ToInt32(extVariable.getSmallDateTextAndWidths(currentVersion)[curItemIndex, 1]);
                     currentEditorWidth = 16;
                     startPosition = Convert.ToInt32(extVariable.getSmallDateTextAndWidths(currentVersion)[curItemIndex, 2], 16);
+                    break;
+                case 3: // Huge Numbers
+                    currentEditorHeight = 12;
+                    currentEditorWidth = 40;
+                    startPosition = Convert.ToInt32(extVariable.getHugeNumbers(currentVersion)[curItemIndex, 1], 16);
+                    break;
+                case 4: //Additional Icons and Animations
+                    currentEditorHeight = Convert.ToInt32(extVariable.getAdditionalIconsAnimations(currentVersion)[curItemIndex, 1]);
+                    currentEditorWidth = Convert.ToInt32(extVariable.getAdditionalIconsAnimations(currentVersion)[curItemIndex, 4]);
+                    startPosition = Convert.ToInt32(extVariable.getAdditionalIconsAnimations(currentVersion)[curItemIndex, 2], 16);
+                    Console.WriteLine("height: " + currentEditorHeight + " | width: " + currentEditorWidth + " | start: " + startPosition);
                     break;
             }
 
@@ -978,6 +1034,85 @@ namespace MiFirmwareEditor
             cbCategory.SelectedIndex = 0;
             currentItemChanged();
             labelInfoSelectVersion.Visible = false;
+        }
+
+        private void buttonGetdata_Click(object sender, EventArgs e)
+        {
+            getData();
+        }
+
+        private void getData()
+        {
+            int curCategoryIndex = cbCategory.SelectedIndex;
+            int curItemIndex = cbEditItem.SelectedIndex;
+            int startPosition = 0;
+            int length = 0;
+
+            //empty data buffer
+            for (int i = 0; i < 72; i++)
+            {
+                for (int j = 0; j < 72; j++)
+                {
+                    drawingAreaBuffer[i, j] = false;
+                }
+            }
+
+            switch (curCategoryIndex)
+            {
+                case 0: //Notifications
+                    currentEditorHeight = 36;
+                    currentEditorWidth = 40;
+                    startPosition = Convert.ToInt32(extVariable.getNotificationNames(currentVersion)[curItemIndex, 1], 16);
+                    length = 1440;
+                    break;
+                case 1: //Medium Time
+                    currentEditorHeight = 12;
+                    currentEditorWidth = 24;
+                    startPosition = Convert.ToInt32(extVariable.getMediumNumberNames(currentVersion)[curItemIndex, 1], 16);
+                    length = 288;
+                    break;
+                case 2: //Small Date Letters
+                    currentEditorHeight = Convert.ToInt32(extVariable.getSmallDateTextAndWidths(currentVersion)[curItemIndex, 1]);
+                    currentEditorWidth = 16;
+                    startPosition = Convert.ToInt32(extVariable.getSmallDateTextAndWidths(currentVersion)[curItemIndex, 2], 16);
+                    break;
+                case 3: // Huge Numbers
+                    currentEditorHeight = 12;
+                    currentEditorWidth = 40;
+                    startPosition = Convert.ToInt32(extVariable.getHugeNumbers(currentVersion)[curItemIndex, 1], 16);
+                    break;
+                case 4: //Additional Icons and Animations
+                    currentEditorHeight = Convert.ToInt32(extVariable.getAdditionalIconsAnimations(currentVersion)[curItemIndex, 1]);
+                    currentEditorWidth = Convert.ToInt32(extVariable.getAdditionalIconsAnimations(currentVersion)[curItemIndex, 4]);
+                    startPosition = Convert.ToInt32(extVariable.getAdditionalIconsAnimations(currentVersion)[curItemIndex, 2], 16);
+                    Console.WriteLine("height: " + currentEditorHeight + " | width: " + currentEditorWidth + " | start: " + startPosition);
+                    break;
+            }
+
+            length = currentEditorHeight * (currentEditorWidth / 8);
+
+            BinaryReader tempFile = new BinaryReader(File.Open(tempFilePath, FileMode.Open));
+            String tempString = "";
+
+            tempFile.BaseStream.Position = startPosition;
+
+            for (int i = 0; i < length; i++)
+            {
+                byte tempByte = tempFile.ReadByte();
+
+                if (tempByte < 0x10)
+                {
+                    tempString += "0" + tempByte.ToString("X") + " ";
+                } 
+                else
+                {
+                    tempString += tempByte.ToString("X") + " ";
+                }
+                
+            }
+            tempFile.Close();
+
+            textBoxGetData.Text = tempString;
         }
     }
 }

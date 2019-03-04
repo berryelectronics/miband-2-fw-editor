@@ -52,6 +52,10 @@
             this.labelPatternPath = new System.Windows.Forms.Label();
             this.buttonCopyStartHex = new System.Windows.Forms.Button();
             this.buttonCopyEndHex = new System.Windows.Forms.Button();
+            this.comboBoxTypeOfVariables = new System.Windows.Forms.ComboBox();
+            this.textBoxVariableName = new System.Windows.Forms.TextBox();
+            this.buttonGenerateVariables = new System.Windows.Forms.Button();
+            this.textBoxVariablesOutput = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // openPattern
@@ -253,11 +257,50 @@
             this.buttonCopyEndHex.UseVisualStyleBackColor = true;
             this.buttonCopyEndHex.Click += new System.EventHandler(this.buttonCopyEndHex_Click);
             // 
+            // comboBoxTypeOfVariables
+            // 
+            this.comboBoxTypeOfVariables.FormattingEnabled = true;
+            this.comboBoxTypeOfVariables.Location = new System.Drawing.Point(386, 11);
+            this.comboBoxTypeOfVariables.Name = "comboBoxTypeOfVariables";
+            this.comboBoxTypeOfVariables.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxTypeOfVariables.TabIndex = 22;
+            // 
+            // textBoxVariableName
+            // 
+            this.textBoxVariableName.Location = new System.Drawing.Point(513, 11);
+            this.textBoxVariableName.Name = "textBoxVariableName";
+            this.textBoxVariableName.Size = new System.Drawing.Size(100, 20);
+            this.textBoxVariableName.TabIndex = 23;
+            // 
+            // buttonGenerateVariables
+            // 
+            this.buttonGenerateVariables.Location = new System.Drawing.Point(386, 38);
+            this.buttonGenerateVariables.Name = "buttonGenerateVariables";
+            this.buttonGenerateVariables.Size = new System.Drawing.Size(121, 23);
+            this.buttonGenerateVariables.TabIndex = 24;
+            this.buttonGenerateVariables.Text = "Generate Variables";
+            this.buttonGenerateVariables.UseVisualStyleBackColor = true;
+            this.buttonGenerateVariables.Click += new System.EventHandler(this.buttonGenerateVariables_Click);
+            // 
+            // textBoxVariablesOutput
+            // 
+            this.textBoxVariablesOutput.Location = new System.Drawing.Point(386, 69);
+            this.textBoxVariablesOutput.Multiline = true;
+            this.textBoxVariablesOutput.Name = "textBoxVariablesOutput";
+            this.textBoxVariablesOutput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBoxVariablesOutput.Size = new System.Drawing.Size(227, 110);
+            this.textBoxVariablesOutput.TabIndex = 25;
+            this.textBoxVariablesOutput.Text = " ";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(388, 227);
+            this.ClientSize = new System.Drawing.Size(699, 249);
+            this.Controls.Add(this.textBoxVariablesOutput);
+            this.Controls.Add(this.buttonGenerateVariables);
+            this.Controls.Add(this.textBoxVariableName);
+            this.Controls.Add(this.comboBoxTypeOfVariables);
             this.Controls.Add(this.buttonCopyEndHex);
             this.Controls.Add(this.buttonCopyStartHex);
             this.Controls.Add(this.labelPatternPath);
@@ -314,6 +357,10 @@
         private System.Windows.Forms.Label labelPatternPath;
         private System.Windows.Forms.Button buttonCopyStartHex;
         private System.Windows.Forms.Button buttonCopyEndHex;
+        private System.Windows.Forms.ComboBox comboBoxTypeOfVariables;
+        private System.Windows.Forms.TextBox textBoxVariableName;
+        private System.Windows.Forms.Button buttonGenerateVariables;
+        private System.Windows.Forms.TextBox textBoxVariablesOutput;
     }
 }
 
